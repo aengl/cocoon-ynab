@@ -1,0 +1,32 @@
+nodes:
+  FilterN26:
+    '?': Filter transactions for the N26 account
+    editor:
+      col: 2
+      row: 0
+    in:
+      data: 'cocoon://ImportTransactions/out/data'
+      filter: x => x.account_name === 'N26'
+    type: FilterCustom
+  ImportTransactions:
+    editor:
+      col: 1
+      row: 0
+    in:
+      budget: TeamTurtle
+      config: 'cocoon://ReadConfig/out/data'
+    type: ReadYNAB
+  ReadConfig:
+    editor:
+      col: 0
+      row: 0
+    in:
+      uri: ~/.cocoon-ynab.json
+    type: ReadJSON
+  ReadN26_tqh4e:
+    editor:
+      col: 1
+      row: 1
+    in:
+      config: 'cocoon://ReadConfig/out/data'
+    type: ReadN26
