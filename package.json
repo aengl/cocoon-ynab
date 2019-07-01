@@ -2,7 +2,6 @@
   "name": "cocoon-ynab",
   "version": "0.1.0",
   "main": "dist/index.js",
-  "module": "dist/components.js",
   "prettier": {
     "singleQuote": true,
     "trailingComma": "es5"
@@ -17,6 +16,7 @@
     "prettier": "1.18.2"
   },
   "scripts": {
+    "start": "cocoon-editor cocoon.yml",
     "build": "yarn build:ncc && yarn build:rollup",
     "build:ncc": "ncc build -m -e lodash index.ts",
     "build:rollup": "rollup --config rollup.config.js",

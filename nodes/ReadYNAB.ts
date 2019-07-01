@@ -21,7 +21,7 @@ export const ReadYNAB: CocoonNode<Ports> = {
 
   out: {
     budget: {},
-    data: {},
+    transactions: {},
   },
 
   category: 'I/O',
@@ -35,22 +35,20 @@ export const ReadYNAB: CocoonNode<Ports> = {
     // Select budget
     const api = new API(config.ynabAccessToken);
     const budgetRequest = await api.budgets.getBudgets();
-    context.debug(`found budgets`, budgetRequest.data);
+    context.debug(`got budgets`, budgetRequest.data);
     const budget = budgetRequest.data.budgets.find(x => x.name === budgetName);
     if (!budget) {
       throw new Error(`no budget with the name ${budgetName}`);
     }
 
     // Get transactions
-    const transactionRequest = await api.transactions.getTransactions(
-      budget.id
-    );
-    const transactions = transactionRequest.data.transactions;
+    const transactions = (await api.transactions.getTransactions(budget.id))
+      .data.transactions;
 
     context.ports.write({
       budget,
-      data: transactions,
+      transactions,
     });
-    return `Yay!`;
+    return `Found ${transactions.length} transactions`;
   },
 };

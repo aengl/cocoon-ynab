@@ -5,17 +5,21 @@ nodes:
       col: 2
       row: 0
     in:
-      data: 'cocoon://ImportTransactions/out/data'
-      filter: x => x.account_name === 'N26'
-    type: FilterCustom
-  ImportTransactions:
+      data: 'cocoon://ReadYNAB/out/transactions'
+      f: x => x.account_name === 'N26'
+    type: Filter
+  DateToTimestamp:
     editor:
-      col: 1
+      col: 3
       row: 0
     in:
-      budget: TeamTurtle
-      config: 'cocoon://ReadConfig/out/data'
-    type: ReadYNAB
+      data: 'cocoon://FilterN26/out/data'
+      f: |
+        x => ({
+          ...x,
+          dateTS: new Date(x.date).getTime()
+        })
+    type: Map
   ReadConfig:
     editor:
       col: 0
@@ -23,10 +27,20 @@ nodes:
     in:
       uri: ~/.cocoon-ynab.json
     type: ReadJSON
-  ReadN26_tqh4e:
+  ReadN26:
     editor:
       col: 1
       row: 1
     in:
       config: 'cocoon://ReadConfig/out/data'
+    persist: true
     type: ReadN26
+  ReadYNAB:
+    editor:
+      col: 1
+      row: 0
+    in:
+      budget: TeamTurtle
+      config: 'cocoon://ReadConfig/out/data'
+    persist: true
+    type: ReadYNAB

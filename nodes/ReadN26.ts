@@ -7,6 +7,7 @@ export interface Ports {
     n26user: string;
     n26password: string;
   };
+  limit: number;
 }
 
 export const ReadN26: CocoonNode<Ports> = {
@@ -14,38 +15,62 @@ export const ReadN26: CocoonNode<Ports> = {
     config: {
       required: true,
     },
+    limit: {
+      defaultValue: 100,
+    },
   },
 
   out: {
-    data: {},
+    accounts: {},
+    transactions: {},
+    token: {},
   },
 
   category: 'I/O',
 
   async process(context) {
-    const { config } = context.ports.read();
+    const { config, limit } = context.ports.read();
     if (!config.n26user || !config.n26password) {
       throw new Error(`n26user or n26password missing in config`);
     }
 
+    // Get OAuth token
     const form = new FormData();
     form.append('username', config.n26user);
     form.append('password', config.n26password);
     form.append('grant_type', 'password');
-    const result = await got.post('https://api.tech26.de/oauth/token', {
+    const tokenResult = await got.post('https://api.tech26.de/oauth/token', {
       body: form,
       headers: {
         // Magical token which is all over the internet
         Authorization: `Basic bXktdHJ1c3RlZC13ZHBDbGllbnQ6c2VjcmV0`,
       },
     });
-    const jsonResult = JSON.parse(result.body);
-    context.debug(jsonResult);
-    const accessToken = jsonResult['access_token'];
+    const token = JSON.parse(tokenResult.body)['access_token'];
+    const request = requestFromApi.bind(null, token);
+    context.debug('token', token);
+
+    // Get account
+    const accounts = (await request('/api/accounts')).body;
+    context.debug('accounts', accounts);
+
+    // Get transactions
+    const transactions = (await request(
+      `/api/smrt/transactions?limit=${limit}`
+    )).body;
 
     context.ports.write({
-      data: accessToken,
+      accounts,
+      transactions,
+      token,
     });
-    return `Yay!`;
+    return `Found ${transactions.length} transactions`;
   },
 };
+
+function requestFromApi(token: string, endpoint: string) {
+  return got(`https://api.tech26.de${endpoint}`, {
+    headers: { Authorization: `Bearer ${token}` },
+    json: true,
+  } as any);
+}
