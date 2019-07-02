@@ -25,8 +25,8 @@ nodes:
       col: 0
       row: 0
     in:
-      uri: ~/.cocoon-ynab.json
-    type: ReadJSON
+      uri: ~/.cocoon-ynab.yaml
+    type: ReadYAML
   ReadN26:
     editor:
       col: 1
