@@ -1,25 +1,41 @@
 nodes:
+  DateToTimestamp:
+    editor:
+      col: 3
+      row: 1
+    in:
+      data: 'cocoon://FilterN26/out/data'
+      map: |
+        x => ({
+          ...x,
+          date_ts: new Date(x.date).getTime()
+        })
+    type: Map
+  Distance_e1rb4:
+    editor:
+      col: 4
+      row: 1
+    in:
+      data: 'cocoon://ReadN26/out/transactions'
+      metrics:
+        amount:
+          type: Linear
+        time:
+          attribute: createdTS
+          targetAttribute: date_ts
+          type: Linear
+          weight: 0.0000003
+      target: 'cocoon://DateToTimestamp/out/data'
+    type: Distance
   FilterN26:
     '?': Filter transactions for the N26 account
     editor:
       col: 2
-      row: 0
+      row: 1
     in:
       data: 'cocoon://ReadYNAB/out/transactions'
-      f: x => x.account_name === 'N26'
+      filter: x => x.account_name === 'N26'
     type: Filter
-  DateToTimestamp:
-    editor:
-      col: 3
-      row: 0
-    in:
-      data: 'cocoon://FilterN26/out/data'
-      f: |
-        x => ({
-          ...x,
-          dateTS: new Date(x.date).getTime()
-        })
-    type: Map
   ReadConfig:
     editor:
       col: 0
@@ -29,8 +45,8 @@ nodes:
     type: ReadYAML
   ReadN26:
     editor:
-      col: 1
-      row: 1
+      col: 3
+      row: 0
     in:
       config: 'cocoon://ReadConfig/out/data'
     persist: true
@@ -38,7 +54,7 @@ nodes:
   ReadYNAB:
     editor:
       col: 1
-      row: 0
+      row: 1
     in:
       budget: TeamTurtle
       config: 'cocoon://ReadConfig/out/data'

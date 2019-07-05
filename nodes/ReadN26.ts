@@ -28,7 +28,7 @@ export const ReadN26: CocoonNode<Ports> = {
 
   category: 'I/O',
 
-  async process(context) {
+  async *process(context) {
     const { config, limit } = context.ports.read();
     if (!config.n26user || !config.n26password) {
       throw new Error(`n26user or n26password missing in config`);

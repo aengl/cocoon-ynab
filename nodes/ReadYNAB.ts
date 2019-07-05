@@ -26,7 +26,7 @@ export const ReadYNAB: CocoonNode<Ports> = {
 
   category: 'I/O',
 
-  async process(context) {
+  async *process(context) {
     const { budget: budgetName, config } = context.ports.read();
     if (!config.ynabAccessToken) {
       throw new Error(`ynabAccessToken missing in config`);
