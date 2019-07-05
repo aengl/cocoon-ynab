@@ -7,12 +7,11 @@
     "trailingComma": "es5"
   },
   "devDependencies": {
-    "@cocoon/plugin-distance": "0.87.0",
-    "@cocoon/plugin-echarts": "0.87.0",
-    "@cocoon/plugin-merge": "0.87.0",
-    "@cocoon/rollup": "0.87.0",
-    "@cocoon/types": "0.87.0",
-    "@zeit/ncc": "0.20.2",
+    "@cocoon/plugin-distance": "0.93.0",
+    "@cocoon/plugin-echarts": "0.93.0",
+    "@cocoon/rollup": "0.93.0",
+    "@cocoon/types": "0.93.0",
+    "@zeit/ncc": "0.20.4",
     "prettier": "1.18.2"
   },
   "scripts": {
@@ -26,7 +25,7 @@
   "dependencies": {
     "@types/form-data": "2.2.1",
     "@types/got": "9.6.0",
-    "form-data": "2.4.0",
+    "form-data": "2.5.0",
     "got": "9.6.0",
     "ynab": "1.13.4"
   }

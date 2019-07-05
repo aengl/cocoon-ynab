@@ -18,45 +18,40 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
-"@cocoon/plugin-distance@0.87.0":
-  version "0.87.0"
-  resolved "https://registry.yarnpkg.com/@cocoon/plugin-distance/-/plugin-distance-0.87.0.tgz#f21888a5de0be2c2cc00f8f15224e11dcf0d6dc5"
-  integrity sha512-/Jos4VZZgPPMUYzfjXaehE6ZqFPg/ZNP5Fh84Sweh3x0aHyPmkTo3o1VkB78CrjXMMzHTuGQuxNzoSslAAlILw==
+"@cocoon/plugin-distance@0.93.0":
+  version "0.93.0"
+  resolved "https://registry.yarnpkg.com/@cocoon/plugin-distance/-/plugin-distance-0.93.0.tgz#3add50d6d8666df973f1561c5f81cf5b76bf800b"
+  integrity sha512-wBwHyY0EgrGE7B09bDFlb2a5VwbRwaGkruebNdb2zwzK8tGulqLlR69Vidv2TtIqAZgWrMeESFzg2gMoiDwnhQ==
 
-"@cocoon/plugin-echarts@0.87.0":
-  version "0.87.0"
-  resolved "https://registry.yarnpkg.com/@cocoon/plugin-echarts/-/plugin-echarts-0.87.0.tgz#f39effe680294cd94f0482e6fa4be21157888027"
-  integrity sha512-3fLZEdyfpFaz00923SaI9EbxmnyNWugRetPqPhvowKZ6jtl8eUlwd8e4zFzdu+1jLbpWdzycPqHn32zokW905A==
+"@cocoon/plugin-echarts@0.93.0":
+  version "0.93.0"
+  resolved "https://registry.yarnpkg.com/@cocoon/plugin-echarts/-/plugin-echarts-0.93.0.tgz#91696be98d26bbdfe4b8584bcd85d105a0237cd6"
+  integrity sha512-0vbTD5FpxZTk5FVVjnslu4eXOi06Z0jEPmgiH5zymcIOouUkOf5A5f97YLn82ozExFpZyRhrW6afvUhDZrum7A==
 
-"@cocoon/plugin-merge@0.87.0":
-  version "0.87.0"
-  resolved "https://registry.yarnpkg.com/@cocoon/plugin-merge/-/plugin-merge-0.87.0.tgz#d7f40559a02057472110962394a5cd599c587b8d"
-  integrity sha512-ASOsnEfS+FEKGL5EscVNjNtsvbFMDGK38CpdaZfxJbbPdesrLpYxuRRMHX0TbLfXNwLocD3be+hRA7NI1inA6w==
-
-"@cocoon/rollup@0.87.0":
-  version "0.87.0"
-  resolved "https://registry.yarnpkg.com/@cocoon/rollup/-/rollup-0.87.0.tgz#840c5e952303565226b35c43852cf2aafb9384f6"
-  integrity sha512-fxtLLcC6h/u7BswBJIR1FY0CQw9RVd3drXi4pNJDyxYUYoddy0xYInt53DvOQXWmBv8gkJ+9szmz6ppmO6XBJQ==
+"@cocoon/rollup@0.93.0":
+  version "0.93.0"
+  resolved "https://registry.yarnpkg.com/@cocoon/rollup/-/rollup-0.93.0.tgz#99a94ced7d23b5da3c212dda793141dca95b7b83"
+  integrity sha512-YnfImXFfjCLTfr8+TFQCoG2vHLzuV3/r5F+8a7sxYFXCWGgTDbk396pOgOhx7MFJ+puIQ4PqM2GW3BMd869JWQ==
   dependencies:
-    rollup "^1.16.2"
+    rollup "^1.16.4"
     rollup-plugin-commonjs "^10.0.0"
     rollup-plugin-external-globals "^0.3.1"
     rollup-plugin-json "^4.0.0"
-    rollup-plugin-node-resolve "^5.0.4"
+    rollup-plugin-node-resolve "^5.2.0"
     rollup-plugin-replace "^2.2.0"
-    rollup-plugin-terser "^5.0.0"
+    rollup-plugin-terser "^5.1.0"
     rollup-plugin-typescript "^1.0.1"
     tslib "^1.10.0"
     typescript "^3.5.2"
 
-"@cocoon/types@0.87.0":
-  version "0.87.0"
-  resolved "https://registry.yarnpkg.com/@cocoon/types/-/types-0.87.0.tgz#de1612e818864cb495a0d8abf2321a106011ec83"
-  integrity sha512-WSsHSs+jk0yt87iFt91nNkmyg4qzayg/HnxHvlJvJkAb0TkqhsAMaUuCzBiShphSi7iENw5AhKB7L5SWkQqDOQ==
+"@cocoon/types@0.93.0":
+  version "0.93.0"
+  resolved "https://registry.yarnpkg.com/@cocoon/types/-/types-0.93.0.tgz#72629be4c1ceb7b05e75b2c494afb57c172830c0"
+  integrity sha512-w+B+kvA6iRPqYDYYP8h86rlGhyhHHHqOvEnCdzNQyH76hCL5T09HaYDW397EyADoTynMQV//7/3ybmINwR8vcQ==
   dependencies:
     "@types/lodash" "^4.14.134"
-    "@types/node" "^12.0.8"
-    "@types/react" "^16.8.22"
+    "@types/node" "^12.0.12"
+    "@types/react" "^16.8.23"
     "@types/react-dom" "^16.8.4"
     "@types/styled-components" "^4.1.16"
 
@@ -97,10 +92,15 @@
   resolved "https://registry.yarnpkg.com/@types/lodash/-/lodash-4.14.135.tgz#d2607c35dd68f70c2b35ba020c667493dedd8447"
   integrity sha512-Ed+tSZ9qM1oYpi5kzdsBuOzcAIn1wDW+e8TFJ50IMJMlSopGdJgKAbhHzN6h1E1OfjlGOr2JepzEWtg9NIfoNg==
 
-"@types/node@*", "@types/node@^12.0.8":
+"@types/node@*":
   version "12.0.10"
   resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.10.tgz#51babf9c7deadd5343620055fc8aff7995c8b031"
   integrity sha512-LcsGbPomWsad6wmMNv7nBLw7YYYyfdYcz6xryKYQhx89c3XXan+8Q6AJ43G5XDIaklaVkK3mE4fCb0SBvMiPSQ==
+
+"@types/node@^12.0.10", "@types/node@^12.0.12":
+  version "12.0.12"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-12.0.12.tgz#cc791b402360db1eaf7176479072f91ee6c6c7ca"
+  integrity sha512-Uy0PN4R5vgBUXFoJrKryf5aTk3kJ8Rv3PdlHjl6UaX+Cqp1QE0yPQ68MPXGrZOfG7gZVNDIJZYyot0B9ubXUrQ==
 
 "@types/prop-types@*":
   version "15.7.1"
@@ -122,10 +122,18 @@
     "@types/prop-types" "*"
     "@types/react" "*"
 
-"@types/react@*", "@types/react@^16.8.22":
+"@types/react@*":
   version "16.8.22"
   resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.22.tgz#7f18bf5ea0c1cad73c46b6b1c804a3ce0eec6d54"
   integrity sha512-C3O1yVqk4sUXqWyx0wlys76eQfhrQhiDhDlHBrjER76lR2S2Agiid/KpOU9oCqj1dISStscz7xXz1Cg8+sCQeA==
+  dependencies:
+    "@types/prop-types" "*"
+    csstype "^2.2.0"
+
+"@types/react@^16.8.23":
+  version "16.8.23"
+  resolved "https://registry.yarnpkg.com/@types/react/-/react-16.8.23.tgz#ec6be3ceed6353a20948169b6cb4c97b65b97ad2"
+  integrity sha512-abkEOIeljniUN9qB5onp++g0EY38h7atnDHxwKUFz1r3VH1+yG1OKi2sNPTyObL40goBmfKFpdii2lEzwLX1cA==
   dependencies:
     "@types/prop-types" "*"
     csstype "^2.2.0"
@@ -151,10 +159,10 @@
   resolved "https://registry.yarnpkg.com/@types/tough-cookie/-/tough-cookie-2.3.5.tgz#9da44ed75571999b65c37b60c9b2b88db54c585d"
   integrity sha512-SCcK7mvGi3+ZNz833RRjFIxrn4gI1PPR3NtuIS+6vMkvmsGjosqTJwRt5bAEFLRz+wtJMWv8+uOnZf2hi2QXTg==
 
-"@zeit/ncc@0.20.2":
-  version "0.20.2"
-  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.20.2.tgz#5f5f67b51d6bd1f92e334c4aeed799dc9625a459"
-  integrity sha512-pLc/iJ68//djAW3jE2xMm5vauAuN0wuq9bv4ha/AAlVOBhJXHrx7GBo8SITTZq11nT8wWzYrY0eotw4UfZBiiw==
+"@zeit/ncc@0.20.4":
+  version "0.20.4"
+  resolved "https://registry.yarnpkg.com/@zeit/ncc/-/ncc-0.20.4.tgz#00f0a25a88cac3712af4ba66561d9e281c6f05c9"
+  integrity sha512-fmq+F/QxPec+k/zvT7HiVpk7oiGFseS6brfT/AYqmCUp6QFRK7vZf2Ref46MImsg/g2W3g5X6SRvGRmOAvEfdA==
 
 acorn@^6.1.1:
   version "6.1.1"
@@ -297,10 +305,10 @@ esutils@^2.0.2:
   resolved "https://registry.yarnpkg.com/esutils/-/esutils-2.0.2.tgz#0abf4f1caa5bcb1f7a9d8acc6dea4faaa04bac9b"
   integrity sha1-Cr9PHKpbyx96nYrMbepPqqBLrJs=
 
-form-data@2.4.0:
-  version "2.4.0"
-  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.4.0.tgz#4902b831b051e0db5612a35e1a098376f7b13ad8"
-  integrity sha512-4FinE8RfqYnNim20xDwZZE0V2kOs/AuElIjFUbPuegQSaoZM+vUT5FnwSl10KPugH4voTg1bEQlcbCG9ka75TA==
+form-data@2.5.0:
+  version "2.5.0"
+  resolved "https://registry.yarnpkg.com/form-data/-/form-data-2.5.0.tgz#094ec359dc4b55e7d62e0db4acd76e89fe874d37"
+  integrity sha512-WXieX3G/8side6VIqx44ablyULoGruSde5PNTxoUyo5CeyAMX6nVWUd0rgist/EuX655cjhUhTo1Fo3tRYqbcA==
   dependencies:
     asynckit "^0.4.0"
     combined-stream "^1.0.6"
@@ -563,7 +571,7 @@ rollup-plugin-json@^4.0.0:
   dependencies:
     rollup-pluginutils "^2.5.0"
 
-rollup-plugin-node-resolve@^5.0.4:
+rollup-plugin-node-resolve@^5.2.0:
   version "5.2.0"
   resolved "https://registry.yarnpkg.com/rollup-plugin-node-resolve/-/rollup-plugin-node-resolve-5.2.0.tgz#730f93d10ed202473b1fb54a5997a7db8c6d8523"
   integrity sha512-jUlyaDXts7TW2CqQ4GaO5VJ4PwwaV8VUGA7+km3n6k6xtOEacf61u0VXwN80phY/evMcaS+9eIeJ9MOyDxt5Zw==
@@ -582,13 +590,14 @@ rollup-plugin-replace@^2.2.0:
     magic-string "^0.25.2"
     rollup-pluginutils "^2.6.0"
 
-rollup-plugin-terser@^5.0.0:
-  version "5.0.0"
-  resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-5.0.0.tgz#ac50fdb703b580447a7e6b1692aeed515a6be8cf"
-  integrity sha512-W+jJ4opYnlmNyVW0vtRufs+EGf68BIJ7bnOazgz8mgz8pA9lUyrEifAhPs5y9M16wFeAyBGaRjKip4dnFBtXaw==
+rollup-plugin-terser@^5.1.0:
+  version "5.1.0"
+  resolved "https://registry.yarnpkg.com/rollup-plugin-terser/-/rollup-plugin-terser-5.1.0.tgz#82e637613d5af6c85ac4319b508b1c065d64075c"
+  integrity sha512-tvJweguo+f9T1SBcSmEMaArCUM07mIg61ArqPj3Fty9OdwTLCxBUBdxS3e1cU68Z1lXf52JBhbt3yRuQoHLtQg==
   dependencies:
     "@babel/code-frame" "^7.0.0"
     jest-worker "^24.6.0"
+    rollup-pluginutils "^2.8.1"
     serialize-javascript "^1.7.0"
     terser "^4.0.0"
 
@@ -607,13 +616,13 @@ rollup-pluginutils@^2.5.0, rollup-pluginutils@^2.6.0, rollup-pluginutils@^2.8.1:
   dependencies:
     estree-walker "^0.6.1"
 
-rollup@^1.16.2:
-  version "1.16.3"
-  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.16.3.tgz#9b8bcf31523efc83447a9624bd2fe6ca58caa1e7"
-  integrity sha512-iXINUUEk2NTZXE3GcUtLQt2cvfQsAUXBQ8AFsDK8tg7Wp5bwTKdZXPdzB2IJQwHpdUNfsIgYMAfajurh7SVTnA==
+rollup@^1.16.4:
+  version "1.16.6"
+  resolved "https://registry.yarnpkg.com/rollup/-/rollup-1.16.6.tgz#0d979e3edd14a27e5436a145c7f1fcef35e0083b"
+  integrity sha512-oM3iKkzPCq9Da95wCnNfS8YlNZjgCD5c/TceKnJIthI9FOeJqnO3PUr/C5Suv9Kjzh0iphKL02PLeja3A5AMIA==
   dependencies:
     "@types/estree" "0.0.39"
-    "@types/node" "^12.0.8"
+    "@types/node" "^12.0.10"
     acorn "^6.1.1"
 
 safe-buffer@~5.1.0, safe-buffer@~5.1.1:
