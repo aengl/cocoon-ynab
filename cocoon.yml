@@ -43,7 +43,7 @@ nodes:
       col: 0
       row: 0
     in:
-      uri: ~/.cocoon-ynab.yaml
+      uri: ~/.cocoon-ynab.yml
     type: ReadYAML
   ReadN26:
     editor:
