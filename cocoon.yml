@@ -1,4 +1,19 @@
 nodes:
+  AmountToInteger:
+    '?': >-
+      YNAB uses "milliunits", so we use that inernally everywhere as well. See:
+      https://api.youneedabudget.com/#data_formats
+    editor:
+      col: 2
+      row: 2
+    in:
+      data: 'cocoon://ReadN26/out/transactions'
+      map: |
+        x => ({
+          ...x,
+          amount: Math.round(x.amount * 1000)
+        })
+    type: Map
   Annotate_rtt4t:
     editor:
       col: 5
@@ -6,48 +21,23 @@ nodes:
     in:
       account: 'cocoon://ReadYNAB/out/account'
       budget: 'cocoon://ReadYNAB/out/budget'
+      categories: 'cocoon://ReadYNAB/out/categories'
       config: 'cocoon://ReadConfig/out/data'
-      data: 'cocoon://Distance_e1rb4/out/data'
+      data: 'cocoon://SimilarPayees/out/data'
     type: CreateTransactions
     view: Transaction
   DateToTimestamp:
     editor:
-      col: 3
+      col: 2
       row: 1
     in:
-      data: 'cocoon://FilterN26/out/data'
+      data: 'cocoon://ReadYNAB/out/transactions'
       map: |
         x => ({
           ...x,
           date_ts: new Date(x.date).getTime()
         })
     type: Map
-  Distance_e1rb4:
-    editor:
-      col: 4
-      row: 1
-    in:
-      affluent: 'cocoon://DateToTimestamp/out/data'
-      data: 'cocoon://ReadN26/out/transactions'
-      metrics:
-        amount:
-          absolute: true
-          type: Percent
-        date:
-          absolute: true
-          affluentAttribute: date_ts
-          attribute: createdTS
-          type: Percent
-    type: Distance
-  FilterN26:
-    '?': Filter transactions for the N26 account
-    editor:
-      col: 2
-      row: 1
-    in:
-      data: 'cocoon://ReadYNAB/out/transactions'
-      filter: x => x.account_name === 'N26'
-    type: Filter
   ReadConfig:
     editor:
       col: 0
@@ -72,3 +62,39 @@ nodes:
       config: 'cocoon://ReadConfig/out/data'
     persist: true
     type: ReadYNAB
+  SimilarPayees:
+    editor:
+      col: 4
+      row: 1
+    in:
+      affluent: 'cocoon://ReadYNAB/out/payees'
+      attribute: similarPayees
+      data: 'cocoon://SimilarTransactions/out/data'
+      metrics:
+        payee:
+          affluentAttribute: name
+          attribute: merchantName
+          type: String
+      precision: 2
+    type: Distance
+  SimilarTransactions:
+    editor:
+      col: 3
+      row: 2
+    in:
+      affluent: 'cocoon://DateToTimestamp/out/data'
+      attribute: similarTransactions
+      data: 'cocoon://AmountToInteger/out/data'
+      metrics:
+        amount:
+          absolute: true
+          type: Percent
+          weight: 10
+        date:
+          absolute: true
+          affluentAttribute: date_ts
+          attribute: createdTS
+          type: Percent
+          weight: 100
+      precision: 2
+    type: Distance

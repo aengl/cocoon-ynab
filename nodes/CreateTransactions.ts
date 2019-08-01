@@ -1,16 +1,26 @@
-import { CocoonNode } from '@cocoon/types';
+import { CocoonNode, PortData } from '@cocoon/types';
 import requireCocoonNode from '@cocoon/util/requireCocoonNode';
-import { Account, API, BudgetDetail, SaveTransaction, utils } from 'ynab';
+import createTemporaryNodeContext from '@cocoon/util/createTemporaryNodeContext';
+import processTemporaryNode from '@cocoon/util/processTemporaryNode';
+import {
+  Account,
+  API,
+  BudgetDetail,
+  CategoryGroupWithCategories,
+  SaveTransaction,
+  utils,
+} from 'ynab';
 
 export interface Ports {
   account: Account;
   budget: BudgetDetail;
+  categories: CategoryGroupWithCategories[];
   config: {
+    transactions: string;
     ynabAccessToken: string;
   };
   data: object[];
   key: string;
-  path: string;
 }
 
 export interface QueryData {
@@ -30,6 +40,7 @@ export const CreateTransactions: CocoonNode<Ports> = {
     budget: {
       required: true,
     },
+    categories: {},
     config: {
       required: true,
     },
@@ -38,10 +49,6 @@ export const CreateTransactions: CocoonNode<Ports> = {
     },
     key: {
       defaultValue: 'id',
-      visible: false,
-    },
-    path: {
-      defaultValue: 'transactions.json',
       visible: false,
     },
   },
@@ -54,10 +61,24 @@ export const CreateTransactions: CocoonNode<Ports> = {
   category: 'Services',
 
   async *process(context) {
-    const annotate = requireCocoonNode(context.registry, 'Annotate');
-    for await (const progress of annotate.process(context)) {
+    const { config, data, key } = context.ports.read();
+    const annotateResults: PortData = {};
+    for await (const progress of processTemporaryNode(
+      context,
+      'Annotate',
+      {
+        data,
+        key,
+        path: config.transactions || 'transactions.json',
+      },
+      annotateResults
+    )) {
       yield progress;
     }
+    context.ports.write(annotateResults);
+    return `Found ${
+      Object.keys(annotateResults.annotations).length
+    } annotated transactions`;
   },
 
   async receive(context, data: QueryData) {
@@ -74,12 +95,14 @@ export const CreateTransactions: CocoonNode<Ports> = {
           cleared: SaveTransaction.ClearedEnum.Cleared,
           approved: true,
           date: utils.getCurrentDateInISOFormat(),
-          amount: Math.round(transaction.amount * 100),
+          amount: transaction.amount,
           memo,
         },
       });
     }
-    const annotate = requireCocoonNode(context.registry, 'Annotate');
-    await annotate.receive!(context, { id: transaction.id });
+    await requireCocoonNode(context.registry, 'Annotate').receive!(
+      createTemporaryNodeContext(context, { id: transaction.id }),
+      { id: transaction.id }
+    );
   },
 };

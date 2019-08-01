@@ -3,10 +3,10 @@ import { API } from 'ynab';
 
 export interface Ports {
   account: string;
+  budget: string;
   config: {
     ynabAccessToken: string;
   };
-  budget: string;
 }
 
 export const ReadYNAB: CocoonNode<Ports> = {
@@ -26,6 +26,8 @@ export const ReadYNAB: CocoonNode<Ports> = {
   out: {
     account: {},
     budget: {},
+    categories: {},
+    payees: {},
     transactions: {},
   },
 
@@ -67,6 +69,9 @@ export const ReadYNAB: CocoonNode<Ports> = {
     context.ports.write({
       account,
       budget,
+      categories: (await api.categories.getCategories(budget.id)).data
+        .category_groups,
+      payees: (await api.payees.getPayees(budget.id)).data.payees,
       transactions,
     });
     return `Found ${transactions.length} transactions`;
