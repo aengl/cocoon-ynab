@@ -23,6 +23,7 @@
     "prettier": "1.18.2"
   },
   "scripts": {
+    "postinstall": "yarn build",
     "start": "cocoon-editor cocoon.yml",
     "build": "yarn build:ncc && yarn build:rollup",
     "build:ncc": "ncc build -m -e lodash index.ts",
