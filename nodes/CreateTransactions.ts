@@ -90,7 +90,7 @@ export const CreateTransactions: CocoonNode<Ports> = {
           payee_name: transaction.merchantName,
           cleared: SaveTransaction.ClearedEnum.Cleared,
           approved: true,
-          date: utils.getCurrentDateInISOFormat(),
+          date: new Date(transaction.visibleTS).toISOString(),
           amount: transaction.amount,
           memo,
         },
