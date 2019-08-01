@@ -12,6 +12,9 @@ nodes:
         x => ({
           ...x,
           amount: Math.round(x.amount * 1000),
+          originalAmount: x.originalAmount
+            ? Math.round(x.originalAmount * 1000)
+            : x.originalAmount,
           payee: x.merchantName || x.partnerName
         })
     type: Map
