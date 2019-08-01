@@ -52,7 +52,9 @@ export const EditComponent = (props: CocoonViewProps) => {
         <tbody>
           <tr>
             <td>Amount:</td>
-            <td>{nf.format(transaction.amount / 1000)}</td>
+            <td className={transaction.amount > 0 ? 'inflow' : 'outflow'}>
+              {nf.format(transaction.amount / 1000)}
+            </td>
           </tr>
           <tr>
             <td>Date:</td>
@@ -184,6 +186,18 @@ const Wrapper = styled.div`
   code {
     display: inline-block;
     color: #777;
+  }
+  .inflow {
+    background-color: #0b4a27;
+  }
+  .outflow {
+    background-color: #6f1c09;
+  }
+  .inflow,
+  .outflow {
+    display: inline-block;
+    border-radius: 3px;
+    padding: 0px 7px;
   }
   .framed {
     margin: 0.8em 0 0;
