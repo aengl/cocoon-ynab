@@ -1,5 +1,5 @@
 nodes:
-  AmountToInteger:
+  MapN26Data:
     '?': >-
       YNAB uses "milliunits", so we use that inernally everywhere as well. See:
       https://api.youneedabudget.com/#data_formats
@@ -11,7 +11,8 @@ nodes:
       map: |
         x => ({
           ...x,
-          amount: Math.round(x.amount * 1000)
+          amount: Math.round(x.amount * 1000),
+          payee: x.merchantName || x.partnerName
         })
     type: Map
   Annotate_rtt4t:
@@ -73,7 +74,7 @@ nodes:
       metrics:
         payee:
           affluentAttribute: name
-          attribute: merchantName
+          attribute: payee
           type: String
       precision: 2
     type: Distance
@@ -84,7 +85,7 @@ nodes:
     in:
       affluent: 'cocoon://DateToTimestamp/out/data'
       attribute: similarTransactions
-      data: 'cocoon://AmountToInteger/out/data'
+      data: 'cocoon://MapN26Data/out/data'
       metrics:
         amount:
           absolute: true

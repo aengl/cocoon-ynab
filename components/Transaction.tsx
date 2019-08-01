@@ -41,7 +41,7 @@ export const EditComponent = (props: CocoonViewProps) => {
 
   useEffect(() => {
     setMemo('');
-    setPayee(transaction.merchantName || transaction.partnerName || '');
+    setPayee(transaction.payee || '');
   }, [transaction.id]);
 
   return (
