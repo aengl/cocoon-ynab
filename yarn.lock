@@ -18,6 +18,13 @@
     esutils "^2.0.2"
     js-tokens "^4.0.0"
 
+"@cocoon/editor@0.101.0":
+  version "0.101.0"
+  resolved "https://registry.yarnpkg.com/@cocoon/editor/-/editor-0.101.0.tgz#84477905bc0db70f440f0346ce16ba8190ef4d2e"
+  integrity sha512-Oy5E31IdQuS/xYJZfx2EtjSogRE0G2OG/6XrCtD3r12lqiv4r7RkbpgewoudOxGRpqZM+OcJgbeCrySf4CVU1Q==
+  optionalDependencies:
+    "@cocoon/plugin-inspect" "0.101.0"
+
 "@cocoon/plugin-distance@0.101.0":
   version "0.101.0"
   resolved "https://registry.yarnpkg.com/@cocoon/plugin-distance/-/plugin-distance-0.101.0.tgz#70d956d2cd85dfd9aec41767d1e3454b387973d2"
@@ -27,6 +34,11 @@
   version "0.101.0"
   resolved "https://registry.yarnpkg.com/@cocoon/plugin-echarts/-/plugin-echarts-0.101.0.tgz#df8349e40df76b259ff835757d0e110a2750c65a"
   integrity sha512-aUpIG6r42V1CV7PVAdg6x/ZdEStrPSGMnuGGEM+COhUmC2tn5HxO1d2Wiuzd0ESkUL6DQM5GlBeKiH41XzUBVQ==
+
+"@cocoon/plugin-inspect@0.101.0":
+  version "0.101.0"
+  resolved "https://registry.yarnpkg.com/@cocoon/plugin-inspect/-/plugin-inspect-0.101.0.tgz#aedc7ca5729b03bd118714f2bf87ff6fee2bd5cb"
+  integrity sha512-OOiTeg/0UgJ2G7cRaIHpYw1+MTvcx3ic7XOSLCWXgbTx37hejPB32CtU23a6Tu7WArUMAPI699MRUF3g0C0nuw==
 
 "@cocoon/rollup@0.101.0":
   version "0.101.0"
@@ -419,6 +431,11 @@ keyv@^3.0.0:
   integrity sha512-9ykJ/46SN/9KPM/sichzQ7OvXyGDYKGTaDlKMGCAlg2UK8KRy4jb0d8sFc+0Tt0YYnThq8X2RZgCg74RPxgcVA==
   dependencies:
     json-buffer "3.0.0"
+
+lodash@4.17.15:
+  version "4.17.15"
+  resolved "https://registry.yarnpkg.com/lodash/-/lodash-4.17.15.tgz#b447f6670a0455bbfeedd11392eff330ea097548"
+  integrity sha512-8xOcRHvCjnocdS5cpwXQXVzmmh5e5+saE2QGoeQmbKmRS6J3VQppPOIt0MnmE+4xlZoumy0GPG0D0MVIQbNA1A==
 
 lowercase-keys@^1.0.0, lowercase-keys@^1.0.1:
   version "1.0.1"
