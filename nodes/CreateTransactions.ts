@@ -20,7 +20,6 @@ export interface Ports {
     ynabAccessToken: string;
   };
   data: object[];
-  key: string;
 }
 
 export interface QueryData {
@@ -47,10 +46,6 @@ export const CreateTransactions: CocoonNode<Ports> = {
     data: {
       required: true,
     },
-    key: {
-      defaultValue: 'id',
-      visible: false,
-    },
   },
 
   out: {
@@ -61,14 +56,14 @@ export const CreateTransactions: CocoonNode<Ports> = {
   category: 'Services',
 
   async *process(context) {
-    const { config, data, key } = context.ports.read();
+    const { config, data } = context.ports.read();
     const annotateResults: PortData = {};
     for await (const progress of processTemporaryNode(
       context,
       'Annotate',
       {
         data,
-        key,
+        key: 'id',
         path: config.transactions || 'transactions.json',
       },
       annotateResults
@@ -82,6 +77,7 @@ export const CreateTransactions: CocoonNode<Ports> = {
   },
 
   async receive(context, data: QueryData) {
+    const { config } = context.ports.read();
     const { action, memo, transaction } = data;
     if (action === 'create') {
       const { account, budget, config } = context.ports.read();
@@ -101,7 +97,11 @@ export const CreateTransactions: CocoonNode<Ports> = {
       });
     }
     await requireCocoonNode(context.registry, 'Annotate').receive!(
-      createTemporaryNodeContext(context, { id: transaction.id }),
+      createTemporaryNodeContext(context, {
+        data: [],
+        key: 'id',
+        path: config.transactions || 'transactions.json',
+      }),
       { id: transaction.id }
     );
   },
