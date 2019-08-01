@@ -56,6 +56,21 @@ export const EditComponent = (props: CocoonViewProps) => {
               {nf.format(transaction.amount / 1000)}
             </td>
           </tr>
+          {transaction.originalAmount && (
+            <tr>
+              <td>Original Amount:</td>
+              <td
+                className={
+                  transaction.originalAmount > 0 ? 'inflow' : 'outflow'
+                }
+              >
+                {Intl.NumberFormat('en', {
+                  style: 'currency',
+                  currency: transaction.originalCurrency || 'EUR',
+                }).format(transaction.originalAmount / 1000)}
+              </td>
+            </tr>
+          )}
           <tr>
             <td>Date:</td>
             <td>
