@@ -57,9 +57,9 @@ export const EditComponent = (props: CocoonViewProps) => {
           <tr>
             <td>Date:</td>
             <td>
-              {dtf.format(new Date(transaction.createdTS))} (
+              {dtf.format(new Date(transaction.visibleTS))} (
               {rtf.format(
-                Math.round((transaction.createdTS - Date.now()) / 86400000),
+                Math.round((transaction.visibleTS - Date.now()) / 86400000),
                 'days'
               )}
               )

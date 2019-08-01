@@ -93,7 +93,7 @@ nodes:
         date:
           absolute: true
           affluentAttribute: date_ts
-          attribute: createdTS
+          attribute: visibleTS
           type: Percent
           weight: 100
       precision: 2
