@@ -26,7 +26,7 @@ export const ReadN26: CocoonNode<Ports> = {
     token: {},
   },
 
-  category: 'I/O',
+  category: 'Services',
 
   async *process(context) {
     const { config, limit } = context.ports.read();

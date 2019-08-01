@@ -1,4 +1,15 @@
 nodes:
+  Annotate_rtt4t:
+    editor:
+      col: 5
+      row: 0
+    in:
+      account: 'cocoon://ReadYNAB/out/account'
+      budget: 'cocoon://ReadYNAB/out/budget'
+      config: 'cocoon://ReadConfig/out/data'
+      data: 'cocoon://Distance_e1rb4/out/data'
+    type: CreateTransactions
+    view: Transaction
   DateToTimestamp:
     editor:
       col: 3
@@ -16,16 +27,17 @@ nodes:
       col: 4
       row: 1
     in:
+      affluent: 'cocoon://DateToTimestamp/out/data'
       data: 'cocoon://ReadN26/out/transactions'
       metrics:
         amount:
-          type: Linear
-        time:
+          absolute: true
+          type: Percent
+        date:
+          absolute: true
+          affluentAttribute: date_ts
           attribute: createdTS
-          targetAttribute: date_ts
-          type: Linear
-          weight: 0.0000003
-      target: 'cocoon://DateToTimestamp/out/data'
+          type: Percent
     type: Distance
   FilterN26:
     '?': Filter transactions for the N26 account
@@ -45,8 +57,8 @@ nodes:
     type: ReadYAML
   ReadN26:
     editor:
-      col: 3
-      row: 0
+      col: 1
+      row: 2
     in:
       config: 'cocoon://ReadConfig/out/data'
     persist: true

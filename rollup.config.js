@@ -1,5 +1,5 @@
-import { createComponentConfig } from "@cocoon/rollup";
+import { createComponentConfig } from '@cocoon/rollup';
 
 export default createComponentConfig({
-  production: !process.env.DEBUG
+  production: !process.env.DEBUG,
 });

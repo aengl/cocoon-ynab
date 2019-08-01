@@ -2,6 +2,7 @@ import { CocoonNode } from '@cocoon/types';
 import { API } from 'ynab';
 
 export interface Ports {
+  account: string;
   config: {
     ynabAccessToken: string;
   };
@@ -10,9 +11,12 @@ export interface Ports {
 
 export const ReadYNAB: CocoonNode<Ports> = {
   in: {
+    account: {
+      defaultValue: 'N26',
+    },
     budget: {
-      hide: true,
       required: true,
+      visible: false,
     },
     config: {
       required: true,
@@ -20,25 +24,40 @@ export const ReadYNAB: CocoonNode<Ports> = {
   },
 
   out: {
+    account: {},
     budget: {},
     transactions: {},
   },
 
-  category: 'I/O',
+  category: 'Services',
 
   async *process(context) {
-    const { budget: budgetName, config } = context.ports.read();
+    const {
+      account: accountName,
+      budget: budgetName,
+      config,
+    } = context.ports.read();
     if (!config.ynabAccessToken) {
       throw new Error(`ynabAccessToken missing in config`);
     }
 
     // Select budget
     const api = new API(config.ynabAccessToken);
-    const budgetRequest = await api.budgets.getBudgets();
-    context.debug(`got budgets`, budgetRequest.data);
-    const budget = budgetRequest.data.budgets.find(x => x.name === budgetName);
+    const budgetResponse = await api.budgets.getBudgets();
+    context.debug(`got budgets`, budgetResponse.data);
+    const budget = budgetResponse.data.budgets.find(x => x.name === budgetName);
     if (!budget) {
       throw new Error(`no budget with the name ${budgetName}`);
+    }
+
+    // Get account
+    const accountResponse = await api.accounts.getAccounts(budget.id);
+    context.debug(`got accounts`, accountResponse.data);
+    const account = accountResponse.data.accounts.find(
+      x => x.name === accountName
+    );
+    if (!account) {
+      throw new Error(`no account with the name ${accountName}`);
     }
 
     // Get transactions
@@ -46,6 +65,7 @@ export const ReadYNAB: CocoonNode<Ports> = {
       .data.transactions;
 
     context.ports.write({
+      account,
       budget,
       transactions,
     });
