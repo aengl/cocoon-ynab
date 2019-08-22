@@ -7,37 +7,39 @@
     "trailingComma": "es5"
   },
   "cocoon": {
+    "nodes": [
+      "dist/CreateTransactions",
+      "dist/ReadN26",
+      "dist/ReadYNAB"
+    ],
     "views": [
       {
-        "module": "dist/index.js",
-        "component": "dist/components.js"
+        "module": "dist/TransactionModule",
+        "component": "dist/TransactionComponent"
       }
     ]
   },
   "devDependencies": {
-    "@cocoon/plugin-distance": "0.101.0",
-    "@cocoon/plugin-echarts": "0.101.0",
-    "@cocoon/rollup": "0.101.0",
-    "@cocoon/types": "0.101.0",
+    "@cocoon/plugin-distance": "0.106.0",
+    "@cocoon/plugin-echarts": "0.106.0",
+    "@cocoon/rollup": "0.106.0",
+    "@cocoon/types": "0.106.0",
     "@zeit/ncc": "0.20.4",
     "prettier": "1.18.2"
   },
   "scripts": {
     "postinstall": "yarn build",
-    "start": "cocoon-editor cocoon.yml",
-    "build": "yarn build:ncc && yarn build:rollup",
-    "build:ncc": "ncc build -m -e lodash index.ts",
-    "build:rollup": "rollup --config rollup.config.js",
-    "dev:ncc": "ncc build -mw -e lodash index.ts",
-    "dev:rollup": "DEBUG=1 rollup --config rollup.config.js --watch"
+    "build": "rollup --config rollup.config.js",
+    "dev": "DEBUG=1 rollup --config rollup.config.js --watch",
+    "editor": "cocoon-editor cocoon.yml"
   },
   "dependencies": {
-    "@cocoon/editor": "0.101.0",
-    "@cocoon/util": "0.101.0",
+    "@cocoon/editor": "0.106.0",
+    "@cocoon/util": "0.106.0",
     "@types/form-data": "2.5.0",
-    "@types/got": "9.6.5",
+    "@types/got": "9.6.7",
     "form-data": "2.5.0",
     "got": "9.6.0",
-    "ynab": "1.14.0"
+    "ynab": "1.15.0"
   }
 }

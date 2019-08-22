@@ -1,5 +1,13 @@
-import { createComponentConfig } from '@cocoon/rollup';
+import {
+  createComponentConfig,
+  createNodeConfig,
+  createViewConfig,
+} from '@cocoon/rollup';
 
-export default createComponentConfig({
-  production: !process.env.DEBUG,
-});
+export default [
+  createNodeConfig('CreateTransactions'),
+  createNodeConfig('ReadN26'),
+  createNodeConfig('ReadYNAB'),
+  createViewConfig('Transaction'),
+  createComponentConfig('Transaction'),
+];

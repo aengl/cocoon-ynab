@@ -5,7 +5,6 @@
     "esModuleInterop": true,
     "incremental": false,
     "jsx": "react",
-    "module": "commonjs",
     "moduleResolution": "node",
     "noFallthroughCasesInSwitch": true,
     "noImplicitAny": false,
@@ -23,5 +22,5 @@
     "strictPropertyInitialization": true,
     "target": "esnext"
   },
-  "exclude": ["**/node_modules", "**/*.test.ts"]
+  "exclude": ["**/node_modules"]
 }
