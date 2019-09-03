@@ -41,7 +41,7 @@ export const EditComponent = (props: CocoonViewProps) => {
 
   useEffect(() => {
     setMemo('');
-    setPayee(transaction.payee || '');
+    setPayee(transaction.payee || transaction.merchantName || '');
   }, [transaction.id]);
 
   return (
@@ -136,7 +136,11 @@ export const EditComponent = (props: CocoonViewProps) => {
           const query: QueryData = {
             action: 'create',
             memo,
-            transaction: transaction,
+            transaction: {
+              ...transaction,
+              payee,
+              merchantName: payee,
+            },
           };
           send(query);
         }}
