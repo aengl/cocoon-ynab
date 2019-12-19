@@ -20,12 +20,12 @@
     ]
   },
   "devDependencies": {
-    "@cocoon/plugin-distance": "0.108.0",
-    "@cocoon/plugin-echarts": "0.108.0",
-    "@cocoon/rollup": "0.108.0",
-    "@cocoon/types": "0.108.0",
-    "@zeit/ncc": "0.20.4",
-    "prettier": "1.18.2"
+    "@cocoon/plugin-distance": "0.109.0",
+    "@cocoon/plugin-echarts": "0.109.0",
+    "@cocoon/rollup": "0.109.0",
+    "@cocoon/types": "0.109.0",
+    "@zeit/ncc": "0.20.5",
+    "prettier": "1.19.1"
   },
   "scripts": {
     "postinstall": "yarn build",
@@ -34,12 +34,12 @@
     "editor": "cocoon-editor cocoon.yml"
   },
   "dependencies": {
-    "@cocoon/editor": "0.108.0",
-    "@cocoon/util": "0.108.0",
+    "@cocoon/editor": "0.109.0",
+    "@cocoon/util": "0.109.0",
     "@types/form-data": "2.5.0",
-    "@types/got": "9.6.7",
-    "form-data": "2.5.1",
-    "got": "9.6.0",
-    "ynab": "1.16.0"
+    "@types/got": "9.6.9",
+    "form-data": "3.0.0",
+    "got": "10.1.0",
+    "ynab": "1.17.0"
   }
 }
