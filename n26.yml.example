@@ -1,0 +1,10 @@
+transactions: ./transactions.json
+
+n26:
+  username:
+  password:
+  mfa_type: app
+  login_data_store_path: ./token_data
+
+ynab:
+  token:

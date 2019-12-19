@@ -2,4 +2,6 @@
 node_modules/
 dist/
 _*
+n26.yml
+token_data
 transactions.json

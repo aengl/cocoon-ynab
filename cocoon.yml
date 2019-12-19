@@ -1,13 +1,37 @@
 nodes:
+  Annotate:
+    editor:
+      col: 5
+      row: 0
+    in:
+      account: "cocoon://ReadYNAB/out/account"
+      budget: "cocoon://ReadYNAB/out/budget"
+      categories: "cocoon://ReadYNAB/out/categories"
+      config: "cocoon://ReadConfig/out/data"
+      data: "cocoon://SimilarPayees/out/data"
+    type: CreateTransactions
+    view: Transaction
+  DateToTimestamp:
+    editor:
+      col: 2
+      row: 1
+    in:
+      data: "cocoon://ReadYNAB/out/transactions"
+      map: |
+        x => ({
+          ...x,
+          date_ts: new Date(x.date).getTime()
+        })
+    type: Map
   MapN26Data:
-    '?': >-
+    "?": >-
       YNAB uses "milliunits", so we use that inernally everywhere as well. See:
       https://api.youneedabudget.com/#data_formats
     editor:
       col: 2
       row: 2
     in:
-      data: 'cocoon://ReadN26/out/transactions'
+      data: "cocoon://ReadN26/out/data"
       map: |
         x => ({
           ...x,
@@ -18,52 +42,28 @@ nodes:
           payee: x.merchantName || x.partnerName
         })
     type: Map
-  Annotate_rtt4t:
-    editor:
-      col: 5
-      row: 0
-    in:
-      account: 'cocoon://ReadYNAB/out/account'
-      budget: 'cocoon://ReadYNAB/out/budget'
-      categories: 'cocoon://ReadYNAB/out/categories'
-      config: 'cocoon://ReadConfig/out/data'
-      data: 'cocoon://SimilarPayees/out/data'
-    type: CreateTransactions
-    view: Transaction
-  DateToTimestamp:
-    editor:
-      col: 2
-      row: 1
-    in:
-      data: 'cocoon://ReadYNAB/out/transactions'
-      map: |
-        x => ({
-          ...x,
-          date_ts: new Date(x.date).getTime()
-        })
-    type: Map
   ReadConfig:
     editor:
       col: 0
       row: 0
     in:
-      uri: ~/.cocoon-ynab.yml
+      uri: n26.yml
     type: ReadYAML
   ReadN26:
     editor:
       col: 1
       row: 2
     in:
-      config: 'cocoon://ReadConfig/out/data'
-    persist: true
-    type: ReadN26
+      command: n26 -json transactions --limit 100
+      deserialise: JSON.parse
+    type: Pipe
   ReadYNAB:
     editor:
       col: 1
       row: 1
     in:
       budget: TeamTurtle
-      config: 'cocoon://ReadConfig/out/data'
+      config: "cocoon://ReadConfig/out/data"
     persist: true
     type: ReadYNAB
   SimilarPayees:
@@ -71,9 +71,9 @@ nodes:
       col: 4
       row: 1
     in:
-      affluent: 'cocoon://ReadYNAB/out/payees'
+      affluent: "cocoon://ReadYNAB/out/payees"
       attribute: similarPayees
-      data: 'cocoon://SimilarTransactions/out/data'
+      data: "cocoon://SimilarTransactions/out/data"
       metrics:
         payee:
           affluentAttribute: name
@@ -86,9 +86,9 @@ nodes:
       col: 3
       row: 2
     in:
-      affluent: 'cocoon://DateToTimestamp/out/data'
+      affluent: "cocoon://DateToTimestamp/out/data"
       attribute: similarTransactions
-      data: 'cocoon://MapN26Data/out/data'
+      data: "cocoon://MapN26Data/out/data"
       metrics:
         amount:
           absolute: true

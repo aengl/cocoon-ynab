@@ -9,7 +9,6 @@
   "cocoon": {
     "nodes": [
       "dist/CreateTransactions",
-      "dist/ReadN26",
       "dist/ReadYNAB"
     ],
     "views": [

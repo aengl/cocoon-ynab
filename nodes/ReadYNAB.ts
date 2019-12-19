@@ -5,7 +5,9 @@ export interface Ports {
   account: string;
   budget: string;
   config: {
-    ynabAccessToken: string;
+    ynab: {
+      token: string;
+    };
   };
 }
 
@@ -37,14 +39,14 @@ export const ReadYNAB: CocoonNode<Ports> = {
     const {
       account: accountName,
       budget: budgetName,
-      config,
+      config: { ynab },
     } = context.ports.read();
-    if (!config.ynabAccessToken) {
-      throw new Error(`ynabAccessToken missing in config`);
+    if (!ynab.token) {
+      throw new Error(`ynab.token missing in config`);
     }
 
     // Select budget
-    const api = new API(config.ynabAccessToken);
+    const api = new API(ynab.token);
     const budgetResponse = await api.budgets.getBudgets();
     context.debug(`got budgets`, budgetResponse.data);
     const budget = budgetResponse.data.budgets.find(x => x.name === budgetName);

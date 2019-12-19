@@ -16,7 +16,9 @@ export interface Ports {
   categories: CategoryGroupWithCategories[];
   config: {
     transactions: string;
-    ynabAccessToken: string;
+    ynab: {
+      token: string;
+    };
   };
   data: object[];
 }
@@ -76,11 +78,13 @@ export const CreateTransactions: CocoonNode<Ports> = {
   },
 
   async receive(context, data: QueryData) {
-    const { config } = context.ports.read();
+    const {
+      config: { transactions, ynab },
+    } = context.ports.read();
     const { action, memo, transaction } = data;
     if (action === 'create') {
       const { account, budget, config } = context.ports.read();
-      const api = new API(config.ynabAccessToken);
+      const api = new API(ynab.token);
       await api.transactions.createTransaction(budget.id, {
         transaction: {
           account_id: account.id,
@@ -99,7 +103,7 @@ export const CreateTransactions: CocoonNode<Ports> = {
       createTemporaryNodeContext(context, {
         data: [],
         key: 'id',
-        path: config.transactions || 'transactions.json',
+        path: transactions || 'transactions.json',
       }),
       { id: transaction.id }
     );
